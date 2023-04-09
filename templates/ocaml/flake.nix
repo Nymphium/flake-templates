@@ -27,7 +27,7 @@
             (map (f: 
               let f' = match "(.*)\.opam$" f; in
               if isNull f' then null else elemAt f' 0)
-              (attrValues (readDir ./.)));
+              (attrNames (readDir ./.)));
 
         devPackagesQuery = {
           ocaml-lsp-server = "*";
@@ -44,9 +44,9 @@
         overlay = final: prev:
           with builtins;
           listToAttrs
-            (map (package: {
-              name = package;
-              value = prev.${package}.overrideAttrs (_: {
+            (map (p: {
+              name = p;
+              value = prev.${p}.overrideAttrs (_: {
                   doNixSupport = false;
                   with-test = true;
                 });
@@ -69,8 +69,8 @@
             ocamlformat = pkgs.callPackage ./nix/ocamlformat.nix { ocamlformat = ./.ocamlformat; };
           in
           pkgs.mkShell {
-            inputsFrom = local;
+            inputsFrom = builtins.map (p: scope.${p} ) local;
             buildInputs = devPackages ++ [ ocamlformat ];
           };
-    });
+      });
 }
