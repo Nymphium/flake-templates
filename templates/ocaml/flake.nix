@@ -82,6 +82,10 @@
       in
       {
         legacyPackages = pkgs;
+        packages = with builtins; listToAttrs (map (p: {
+          name = p;
+          value = scope.${p};
+        }) localNames);
 
         devShells.default =
           pkgs.mkShell {
