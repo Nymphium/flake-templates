@@ -45,7 +45,7 @@ jobs:
           git config --global user.email "${{ env.GIT_EMAIL }}"
           git config --global user.name "${{ env.GIT_NAME }}"
           git config --global url."https://github.com/".pushInsteadOf "git@github.com:"
-          echo "machine github.com login ${{ env.GITHUB_ID }} password ${{ secrets.GITHUB_TOKEN }}" > ~/.netrc
+          echo "machine github.com login ${{ env.GITHUB_ID }} password ${{ secrets.GH_TOKEN }}" > ~/.netrc
           opam install dune-release -y
           mkdir -p $HOME/git
           git clone https://github.com/ocaml/opam-repository $HOME/git/opam-repository
@@ -56,4 +56,4 @@ jobs:
           opam exec -- dune-release distrib --skip-lint --skip-build
           echo "https://github.com/${{ env.GITHUB_ID }}/${{ env.GITHUB_REPO_NAME }}/archive/refs/tags/${{ env.RELEASE_VERSION }}.tar.gz" > _build/asset-${{ env.RELEASE_VERSION }}.url
           opam exec -- dune-release opam pkg
-          opam exec -- dune-release opam submit -y --no-auto-open --token ${{ secrets.GITHUB_TOKEN }}
+          opam exec -- dune-release opam submit -y --no-auto-open --token ${{ secrets.GH_TOKEN }}

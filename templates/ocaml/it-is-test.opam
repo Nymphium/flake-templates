@@ -1,5 +1,11 @@
 opam-version: "2.0"
-version: "0.0.0"
+synopsis: "Write a short description"
+maintainer: ["Your name <email@example.com>"]
+authors: ["Your name <email@example.com>"]
+license: "MIT"
+homepage: "https://github.com/your-id/repo"
+bug-reports: "https://github.com/your-id/repo/issues"
+dev-repo: "git+https://github.com/your-ide/repo.git"
 depends: [
   "dune" {>= "3.0.0"}
   "lwt"
