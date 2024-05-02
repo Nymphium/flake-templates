@@ -37,7 +37,7 @@
         legacyPackages = pkgs;
         devShells.default =
           pkgs.mkShell {
-            buildInputs = fonts ++ [
+            buildInputs = [
               texlive
               pkgs.nil pkgs.nixpkgs-fmt
             ];
