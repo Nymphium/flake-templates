@@ -1,0 +1,21 @@
+\documentclass{ltjsarticle}
+\usepackage{luatexja}
+\usepackage[no-math]{luatexja-fontspec}
+\usepackage{listings}
+\newfontfamily\monaspice[Kerning=Reset]{MonaspiceArNerdFont}
+\setmainjfont[Ligatures=TeX,ItalicFont=*-SemiBold,BoldFont=*-SemiBold,YokoFeatures={JFM=prop},Script=Default,Kerning=On,CharacterWidth=Proportional]{SourceHanSerifJP}
+\lstset{basicstyle=\monaspice}
+
+\title{日本語で\LaTeX }
+\author{びしょ～じょ}
+
+\begin{document}
+\maketitle
+Hello, \LaTeX!
+
+\begin{lstlisting}
+$ nix flake init -t github:Nymphium/flake-templates#latex
+$ direnv allow
+$ lualatex main.tex
+\end{lstlisting}
+\end{document}
