@@ -30,8 +30,7 @@
           genshingothic
           monaspice
         ];
-        OSFONTDIR = with builtins;
-          concatStringsSep ":" (map (f: "${f}/share/fonts") fonts);
+        OSFONTDIR = builtins.concatStringsSep ":" fonts;
       in
       {
         legacyPackages = pkgs;

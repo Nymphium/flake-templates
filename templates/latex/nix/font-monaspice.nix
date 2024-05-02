@@ -20,7 +20,7 @@ stdenv.mkDerivation rec {
   unpackPhase = "unzip $src";
 
   installPhase = ''
-    mkdir -p $out/share/fonts/
-    cp *.otf $out/share/fonts/
+    mkdir -p $out
+    cp *.otf $out/
   '';
 }
