@@ -1,6 +1,6 @@
 {
   outputs = { self }: {
-    templates {
+    templates = {
       ocaml.path = ./templates/ocaml;
       latex.ptah = ./templates/latex;
     };
