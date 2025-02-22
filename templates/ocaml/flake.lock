@@ -3,11 +3,11 @@
     "flake-compat": {
       "flake": false,
       "locked": {
-        "lastModified": 1627913399,
-        "narHash": "sha256-hY8g6H2KFL8ownSiFeMOjwPC8P0ueXpCVEbxgda3pko=",
+        "lastModified": 1696426674,
+        "narHash": "sha256-kvjfFW7WAETZlt09AgDn1MrtKzP7t90Vf7vypd3OL1U=",
         "owner": "edolstra",
         "repo": "flake-compat",
-        "rev": "12c64ca55c1014cdc1b16ed5a804aa8576601ff2",
+        "rev": "0f9255e01c2351cc7d116c072cb317785dd33b33",
         "type": "github"
       },
       "original": {
@@ -21,11 +21,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1681202837,
-        "narHash": "sha256-H+Rh19JDwRtpVPAWp64F+rlEtxUWBAQW28eAi3SRSzg=",
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "cfacdce06f30d2b68473a46042957675eebb3401",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
         "type": "github"
       },
       "original": {
@@ -37,11 +37,11 @@
     "mirage-opam-overlays": {
       "flake": false,
       "locked": {
-        "lastModified": 1661959605,
-        "narHash": "sha256-CPTuhYML3F4J58flfp3ZbMNhkRkVFKmBEYBZY5tnQwA=",
+        "lastModified": 1710922379,
+        "narHash": "sha256-j4QREQDUf8oHOX7qg6wAOupgsNQoYlufxoPrgagD+pY=",
         "owner": "dune-universe",
         "repo": "mirage-opam-overlays",
-        "rev": "05f1c1823d891ce4d8adab91f5db3ac51d86dc0b",
+        "rev": "797cb363df3ff763c43c8fbec5cd44de2878757e",
         "type": "github"
       },
       "original": {
@@ -52,18 +52,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1683168220,
-        "narHash": "sha256-+2gNbWwWeECbQ4WHjdWWUDErdNbyHQvn+C9G47tMwxQ=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "2395e4f1f733dc2a048a1b048f259763b2622ea2",
-        "type": "github"
+        "lastModified": 1739923778,
+        "narHash": "sha256-BqUY8tz0AQ4to2Z4+uaKczh81zsGZSYxjgvtw+fvIfM=",
+        "rev": "36864ed72f234b9540da4cf7a0c49e351d30d3f1",
+        "revCount": 714685,
+        "type": "tarball",
+        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.2411.714685%2Brev-36864ed72f234b9540da4cf7a0c49e351d30d3f1/0195205f-25a8-794d-a512-571fe4b78602/source.tar.gz"
       },
       "original": {
-        "owner": "nixos",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
+        "type": "tarball",
+        "url": "https://flakehub.com/f/NixOS/nixpkgs/%2A"
       }
     },
     "opam-nix": {
@@ -83,11 +81,11 @@
         "opam2json": "opam2json"
       },
       "locked": {
-        "lastModified": 1682411044,
-        "narHash": "sha256-HJY+LANQ75YQSfaTCOnmtiF4pF8d9Eb4dz+wLyNAihE=",
+        "lastModified": 1737622850,
+        "narHash": "sha256-50F6VpvLR0iRq43BDDtSP8UpqItH5njHNRnzFTuFS8Q=",
         "owner": "tweag",
         "repo": "opam-nix",
-        "rev": "02f7ae28a210e17ca5811b0a4c116acd94e82faa",
+        "rev": "80bc0abfbcf683441eba7bbb37d5794ccc32956b",
         "type": "github"
       },
       "original": {
@@ -99,11 +97,11 @@
     "opam-overlays": {
       "flake": false,
       "locked": {
-        "lastModified": 1654162756,
-        "narHash": "sha256-RV68fUK+O3zTx61iiHIoS0LvIk0E4voMp+0SwRg6G6c=",
+        "lastModified": 1726822209,
+        "narHash": "sha256-bwM18ydNT9fYq91xfn4gmS21q322NYrKwfq0ldG9GYw=",
         "owner": "dune-universe",
         "repo": "opam-overlays",
-        "rev": "c8f6ef0fc5272f254df4a971a47de7848cc1c8a4",
+        "rev": "f2bec38beca4aea9e481f2fd3ee319c519124649",
         "type": "github"
       },
       "original": {
@@ -115,11 +113,11 @@
     "opam-repository": {
       "flake": false,
       "locked": {
-        "lastModified": 1683139889,
-        "narHash": "sha256-X4Vbi4y1G4fzfStM9EMCu5FalG/+ixzHVUkEvUNXbHg=",
+        "lastModified": 1740131156,
+        "narHash": "sha256-TYouZu+a92ZucVSWcivxy89W6K63vN5zlDic+SGY1I0=",
         "owner": "ocaml",
         "repo": "opam-repository",
-        "rev": "f179f89b9aae212231cc87a4b7f2ad27989e38ab",
+        "rev": "4022a684b64be8161a05cf897f492f8680792469",
         "type": "github"
       },
       "original": {

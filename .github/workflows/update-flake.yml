@@ -1,0 +1,27 @@
+name: update-flake-lock
+on:
+  workflow_dispatch: # allows manual triggering
+  schedule:
+    - cron: '0 0 1 * *' # runs every monyh 1st
+
+jobs:
+  lockfile:
+    strategy:
+      matrix:
+        template: [ocaml, latex]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@main
+        with:
+          extra-conf: |
+            max-jobs = auto
+            cores = 0
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - uses: DeterminateSystems/update-flake-lock@main
+        with:
+          pr-title: "Update flake.lock for templates/${{ matrix.template }}"
+          pr-labels: |
+            dependencies
+            automated
+          path-to-flake-dir: 'templates/${{ matrix.template }}'

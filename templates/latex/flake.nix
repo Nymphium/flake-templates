@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/*";
 
     flake-utils.url = "github:numtide/flake-utils";
   };
@@ -31,6 +31,8 @@
           monaspice
         ];
         OSFONTDIR = builtins.concatStringsSep ":" fonts;
+
+        formatter = pkgs.nixfmt-rfc-style;
       in
       {
         legacyPackages = pkgs;
@@ -38,13 +40,14 @@
           pkgs.mkShell {
             buildInputs = [
               texlive
-              pkgs.nil pkgs.nixpkgs-fmt
+              pkgs.nil
+              formatter
             ];
             shellHook = ''
               export OSFONTDIR=${OSFONTDIR}
               luaotfload-tool --update
             '';
           };
-        formatter = pkgs.nixpkgs-fmt;
+        inherit formatter;
       });
 }
