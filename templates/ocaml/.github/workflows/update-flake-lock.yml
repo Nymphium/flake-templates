@@ -1,0 +1,23 @@
+name: update-flake-lock
+on:
+  workflow_dispatch: # allows manual triggering
+  schedule:
+    - cron: '0 0 1 * *' # runs every monyh 1st
+
+jobs:
+  lockfile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@main
+        with:
+          extra-conf: |
+            cores = 0
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - uses: DeterminateSystems/update-flake-lock@main
+        with:
+          pr-title: "Update flake.lock"
+          pr-labels: |
+            dependencies
+            automated
+            Nix

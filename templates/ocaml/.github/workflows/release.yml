@@ -10,20 +10,20 @@ on:
 
 permissions: write-all
 env:
-  OCAML_COMPILER: "5.0"
   GIT_EMAIL: "your-email@example.com"
   GIT_NAME: "Your Name"
   GITHUB_ID: "Your-GitHub-ID"
   GITHUB_REPO_NAME: "your-repo-name"
+  DUNE_RELEASE: "nix run .#ocaml-ng.ocamlPackages.dune-release"
 
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
 
   publish:
     needs: release
@@ -34,26 +34,24 @@ jobs:
           echo "::error ::Setup environment variables, workflow permissions and remove this step!"
           exit 1
       - name: Checkout tree
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-      - name: Set-up OCaml
-        uses: ocaml/setup-ocaml@v2
+      - uses: DeterminateSystems/nix-installer-action@main
         with:
-          ocaml-compiler: ${{ env.OCAML_COMPILER }}
+          extra-conf: |
+            cores = 0
+      - uses: DeterminateSystems/magic-nix-cache-action@main
       - name: Install deps
         run: |
           git config --global user.email "${{ env.GIT_EMAIL }}"
           git config --global user.name "${{ env.GIT_NAME }}"
           git config --global url."https://github.com/".pushInsteadOf "git@github.com:"
           echo "machine github.com login ${{ env.GITHUB_ID }} password ${{ secrets.GH_TOKEN }}" > ~/.netrc
-          opam install dune-release -y
           mkdir -p $HOME/git
           git clone https://github.com/ocaml/opam-repository $HOME/git/opam-repository
-      # - name: Setup tmate session
-        # uses: mxschmitt/action-tmate@v3
       - name: Submit
         run: |
-          opam exec -- dune-release distrib --skip-lint --skip-build
+          ${{ env.DUNE_RELEASE }} distrib --skip-lint --skip-build
           echo "https://github.com/${{ env.GITHUB_ID }}/${{ env.GITHUB_REPO_NAME }}/archive/refs/tags/${{ env.RELEASE_VERSION }}.tar.gz" > _build/asset-${{ env.RELEASE_VERSION }}.url
-          opam exec -- dune-release opam pkg
-          opam exec -- dune-release opam submit -y --no-auto-open --token ${{ secrets.GH_TOKEN }}
+          ${{ env.DUNE_RELEASE }} opam pkg
+          ${{ env.DUNE_RELEASE }} opam submit -y --no-auto-open --token ${{ secrets.GH_TOKEN }}
