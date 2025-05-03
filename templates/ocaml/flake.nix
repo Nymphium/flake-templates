@@ -62,7 +62,9 @@
             query =
               {
                 ocaml-system = "*";
-                ocamlformat = pkgs.callPackage ./nix/ocamlformat.nix { };
+                ocamlformat = "*";
+                # If you want to specify a version from .ocamlformat file, uncomment the line below
+                # pkgs.callPackage ./nix/ocamlformat.nix { };
               }
               // devPackagesQuery
               // localPackagesQuery;
@@ -84,6 +86,7 @@
             packages = [
               formatter
               scope.ocamlformat
+              pkgs.actionlint
             ];
           };
           default = pkgs.mkShell {

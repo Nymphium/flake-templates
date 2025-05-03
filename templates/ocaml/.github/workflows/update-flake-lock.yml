@@ -13,7 +13,6 @@ jobs:
         with:
           extra-conf: |
             cores = 0
-      - uses: DeterminateSystems/magic-nix-cache-action@main
       - uses: DeterminateSystems/update-flake-lock@main
         with:
           pr-title: "Update flake.lock"

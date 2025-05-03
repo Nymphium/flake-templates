@@ -40,7 +40,6 @@ jobs:
         with:
           extra-conf: |
             cores = 0
-      - uses: DeterminateSystems/magic-nix-cache-action@main
       - name: Install deps
         run: |
           git config --global user.email "${{ env.GIT_EMAIL }}"
