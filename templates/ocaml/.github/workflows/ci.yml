@@ -1,17 +1,44 @@
-name: CI on Nix
+name: CI
 
 on:
-  [pull_request, push]
+  push:
+    branches:
+      - master
+      - develop
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - labeled
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ !contains(fromJSON('["refs/heads/develop","refs/heads/master"]'), github.ref) }}
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: DeterminateSystems/nix-installer-action@main
         with:
           extra-conf: |
             cores = 0
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - uses: nicknovitski/nix-develop@v1
+      - uses: actions/cache@v4
+        with:
+          path: _build
+          key: ${{ runner.os }}-dune-${{ hashFiles('**/flake.lock') }}-${{ hashFiles('**/dune-project') }}
+      - name: Check for format
+        run: |
+          # shellcheck disable=SC2046
+          nix fmt $(git ls-files '*.nix')
+          dune fmt
+          dune build oenv.opam
+          git diff --exit-code
+          actionlint
       - name: Run tests
         run: |
-          nix develop -c dune test
+          dune test

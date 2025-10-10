@@ -6,22 +6,18 @@ on:
 
 jobs:
   lockfile:
-    strategy:
-      matrix:
-        template: [ocaml, latex]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: DeterminateSystems/update-flake-lock@main
       - uses: DeterminateSystems/nix-installer-action@main
         with:
           extra-conf: |
-            max-jobs = auto
             cores = 0
       - uses: DeterminateSystems/magic-nix-cache-action@main
+      - uses: DeterminateSystems/update-flake-lock@main
         with:
-          pr-title: "Update flake.lock for templates/${{ matrix.template }}"
+          pr-title: "Update flake.lock"
           pr-labels: |
             dependencies
             automated
-          path-to-flake-dir: "templates/${{ matrix.template }}"
+            Nix

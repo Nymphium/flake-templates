@@ -107,8 +107,7 @@
             }) localPackages
           );
 
-        inherit devShells;
-        inherit formatter;
+        inherit devShells formatter;
       }
     );
 }
